@@ -34,17 +34,14 @@ public class ConsumerController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id,@RequestBody Customer c)
     {
-      System.out.println("Inside Put Method");
       cs.updateCustomer(id, c);
       return new ResponseEntity<>("Record Updated Successfully..",HttpStatus.OK);
     }
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id) {
-		boolean b = cs.deleteCustomer(id);
-		if (b == true)
-			return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
-		else
-			return new ResponseEntity<>("Not Deleted Successfully", HttpStatus.CONFLICT);
+	    cs.deleteCustomer(id);
+		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+		
 	}
 
 }
